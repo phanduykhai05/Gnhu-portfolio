@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import { Highlighter } from "@/components/ui/highlighter"
 export function ProfileCard() {
   return (
     <div className="flex h-full flex-col gap-6 rounded-3xl bg-neutral-900 p-7">
@@ -17,8 +17,7 @@ export function ProfileCard() {
         </div>
       </div>
       <p className="text-[15px] leading-relaxed text-neutral-300">
-        Tôi là Ema, một Nhà Mẫu ảnh sống tại Prague. Tôi ghi lại những khoảnh khắc chân thực
-        và kể chuyện bằng hình ảnh, hòa trộn sự sáng tạo và cảm xúc trong mỗi bức ảnh.
+        Tôi là Gia Như, chuyên chụp mẫu ảnh <Highlighter action="underline" color="#FF9800">thời trang</Highlighter> và lookbook tại <Highlighter action="box" color="#00aeff">Hồ Chí Minh</Highlighter>. Tôi tạo nên những bộ hình tinh tế, nhấn mạnh phong cách cá nhân của mẫu và câu chuyện thương hiệu. Bạn có thể book tôi cho bộ ảnh portfolio, <Highlighter action="box" color="#ff0000" iterations={1}>quảng cáo thời trang</Highlighter>, bìa tạp chí hoặc dự án campaing sáng tạo.
       </p>
     </div>
   );

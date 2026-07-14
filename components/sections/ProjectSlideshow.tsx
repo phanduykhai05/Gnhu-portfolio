@@ -1,22 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { CornerTab } from "@/components/ui/CornerTab";
 import { cn } from "@/lib/utils";
 
-type Slide = {
-  image: string;
-  alt: string;
-  href: string;
-};
+import images, { HERO_SLIDES } from "@/assets/images";
 
-const SLIDES: Slide[] = [
-  { image: "/images/hero/gnhu3.jpg", alt: "Brand", href: "/projects/brand" },
-  { image: "/images/hero/gnhu2.jpg", alt: "Darkness", href: "/projects/darkness" },
-  { image: "/images/hero/gnhu.jpg", alt: "Gentlemen", href: "/projects/gentlemen" },
-];
+type Slide = Readonly<(typeof HERO_SLIDES)[number]>;
+
+const SLIDES: readonly Slide[] = HERO_SLIDES;
 
 export function ProjectSlideshow() {
   const [index, setIndex] = useState(0);
@@ -31,7 +26,7 @@ export function ProjectSlideshow() {
   return (
     <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-neutral-900 sm:aspect-auto sm:h-[calc(100vh-2rem)]">
       <Image
-        key={slide.image}
+        key={slide.alt}
         src={slide.image}
         alt={slide.alt}
         fill

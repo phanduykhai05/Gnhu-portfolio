@@ -24,8 +24,8 @@ export function LatestWork() {
         </Link>
       </div>
       <div className="grid flex-1 grid-cols-1 gap-3 sm:grid-cols-2">
-        {WORKS.map((work) => (
-          <WorkCard key={work.href} work={work} />
+        {WORKS.map((work, index) => (
+          <WorkCard key={`${work.href}-${index}`} work={work} />
         ))}
       </div>
     </div>
