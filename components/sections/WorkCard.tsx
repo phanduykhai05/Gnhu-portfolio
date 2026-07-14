@@ -3,9 +3,11 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { CornerTab } from "@/components/ui/CornerTab";
 
+import type { StaticImageData } from "next/image";
+
 export type Work = {
   title: string;
-  image: string;
+  image: string | StaticImageData;
   href: string;
 };
 

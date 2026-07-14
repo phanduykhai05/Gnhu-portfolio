@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { ArrowDown } from "lucide-react";
 import { WorkCard, type Work } from "@/components/sections/WorkCard";
+import { PROJECT_IMAGES } from "@/assets/images";
 
 const WORKS: Work[] = [
-  { title: "Mẫu Ảnh", image: "/images/projects/job1.jpg", href: "/projects/beige" },
-  { title: "Mẫu Ảnh", image: "/images/projects/job2.jpg", href: "/projects/darkness" },
-  { title: "Mẫu Ảnh", image: "/images/projects/job3.jpg", href: "/projects/darkness" },
-  { title: "Mẫu Ảnh", image: "/images/projects/job4.jpg", href: "/projects/darkness" },
-  { title: "Mẫu Ảnh", image: "/images/projects/job5.jpg", href: "/projects/darkness" },
-  { title: "Mẫu Ảnh", image: "/images/projects/job6.jpg", href: "/projects/darkness" },
+  { title: "Mẫu Ảnh", image: PROJECT_IMAGES[0], href: "/projects/beige" },
+  { title: "Mẫu Ảnh", image: PROJECT_IMAGES[1], href: "/projects/darkness" },
+  { title: "Mẫu Ảnh", image: PROJECT_IMAGES[2], href: "/projects/darkness" },
+  { title: "Mẫu Ảnh", image: PROJECT_IMAGES[3], href: "/projects/darkness" },
+  { title: "Mẫu Ảnh", image: PROJECT_IMAGES[4], href: "/projects/darkness" },
+  { title: "Mẫu Ảnh", image: PROJECT_IMAGES[5], href: "/projects/darkness" },
 ];
 
 export function LatestWork() {
