@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { images } from "@/assets/images";
 
 const LINK_COLUMNS = [
   {
@@ -19,7 +20,7 @@ export function SiteFooter() {
       <div className="flex flex-col gap-8">
         <div className="flex items-center gap-4">
           <Image
-            src="/images/about/me.jpg"
+            src={images.me}
             alt="Trần Gia Như"
             width={56}
             height={56}

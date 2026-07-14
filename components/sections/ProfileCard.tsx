@@ -1,11 +1,13 @@
 import Image from "next/image";
-import { Highlighter } from "@/components/ui/highlighter"
+import { Highlighter } from "@/components/ui/highlighter";
+import { images } from "@/assets/images";
+
 export function ProfileCard() {
   return (
     <div className="flex h-full flex-col gap-6 rounded-3xl bg-neutral-900 p-7">
       <div className="flex items-center gap-4">
         <Image
-          src="/images/about/me.jpg"
+          src={images.me}
           alt="Trần Gia Như"
           width={56}
           height={56}

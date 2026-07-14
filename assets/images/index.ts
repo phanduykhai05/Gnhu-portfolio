@@ -7,6 +7,7 @@ import job3 from "./upload/projects/job3.jpg";
 import job4 from "./upload/projects/job4.jpg";
 import job5 from "./upload/projects/job5.jpg";
 import job6 from "./upload/projects/job6.jpg";
+import me from "./upload/about/me.jpg";
 
 export const images = {
   gnhu1,
@@ -18,6 +19,7 @@ export const images = {
   job4,
   job5,
   job6,
+  me,
 };
 
 export const HERO_SLIDES = [
