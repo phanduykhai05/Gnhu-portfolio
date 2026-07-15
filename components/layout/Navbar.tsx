@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, useState, useSyncExternalStore } from "react";
 import { flushSync } from "react-dom";
+import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -9,7 +10,6 @@ import { cn } from "@/lib/utils";
 const NAV_LINKS = [
   { label: "Dự án", href: "/projects" },
   { label: "Giới thiệu", href: "/about" },
-  { label: "Blog", href: "/blog" },
   { label: "Liên hệ", href: "/contact" },
 ];
 
@@ -144,36 +144,60 @@ export function Navbar() {
     </nav>
 
     {/* mobile menu overlay */}
-    {menuOpen && (
-      <div
-        id="overlay"
-        className="fixed inset-0 z-[70] flex flex-col bg-black/95 text-white backdrop-blur-sm sm:hidden"
-      >
-        <div className="flex items-center justify-between px-6 py-6">
-          <span className="text-base font-semibold tracking-tight">Trần Gia Như</span>
-          <button
-            type="button"
-            aria-label="Close menu"
-            onClick={() => setMenuOpen(false)}
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-white/20"
-          >
-            <X className="h-5 w-5" />
-          </button>
-        </div>
-        <nav className="flex flex-1 flex-col items-center justify-center gap-8">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
+    <AnimatePresence>
+      {menuOpen && (
+        <motion.div
+          id="overlay"
+          className="fixed inset-0 z-[70] flex flex-col bg-black/95 text-white backdrop-blur-sm sm:hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+        >
+          <div className="flex items-center justify-between px-6 py-6">
+            <span className="text-base font-semibold tracking-tight">Trần Gia Như</span>
+            <button
+              type="button"
+              aria-label="Close menu"
               onClick={() => setMenuOpen(false)}
-              className="text-3xl font-semibold tracking-tight transition hover:opacity-60"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-white/20"
             >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-      </div>
-    )}
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+          <motion.nav
+            className="flex flex-1 flex-col items-center justify-center gap-8"
+            initial="hidden"
+            animate="show"
+            variants={{
+              show: { transition: { staggerChildren: 0.09, delayChildren: 0.12 } },
+            }}
+          >
+            {NAV_LINKS.map((link) => (
+              <motion.div
+                key={link.label}
+                variants={{
+                  hidden: { opacity: 0, y: -28 },
+                  show: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { type: "spring", stiffness: 300, damping: 22 },
+                  },
+                }}
+              >
+                <Link
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-3xl font-semibold tracking-tight transition hover:opacity-60"
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
+            ))}
+          </motion.nav>
+        </motion.div>
+      )}
+    </AnimatePresence>
     </>
   );
 }

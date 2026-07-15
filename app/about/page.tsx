@@ -1,83 +1,114 @@
 import type { Metadata } from "next";
-import { StickyPortrait } from "@/components/sections/StickyPortrait";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { PortraitTilt } from "@/components/sections/about/PortraitTilt";
 import { SectionCard } from "@/components/sections/about/SectionCard";
-import { Clients } from "@/components/sections/about/Clients";
 import { TimelineList } from "@/components/sections/about/TimelineList";
 import { SocialLinks } from "@/components/sections/SocialLinks";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { Reveal } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
   title: "Giới thiệu — Trần Gia Như",
+  description:
+    "Trần Gia Như — mẫu ảnh & gương mặt thương hiệu tại TP. Hồ Chí Minh. Nhận chụp ảnh, quay feedback và host livestream.",
 };
 
-const EXHIBITIONS = [
-  { title: "Qua ống kính", year: "2024" },
-  { title: "Kết nối tự nhiên", year: "2024" },
-  { title: "Câu chuyện đô thị", year: "2023" },
-  { title: "Bảng màu thiên nhiên", year: "2023" },
-  { title: "Những khoảnh khắc chưa thấy", year: "2022" },
-  { title: "Phản chiếu Prague", year: "2022" },
+const SERVICES = [
+  { title: "Nhận chụp ảnh", year: "Lookbook · Sản phẩm" },
+  { title: "Quay feedback", year: "Review · TVC ngắn" },
+  { title: "Host livestream", year: "Bán hàng · Sự kiện" },
 ];
 
-const AWARDS = [
-  { title: "Tác phẩm thiên nhiên của năm", year: "2023" },
-  { title: "Giải khoảnh khắc tự nhiên", year: "2022" },
-  { title: "Xuất sắc trong kể chuyện hình ảnh", year: "2022" },
+const FACTS = [
+  { label: "Nơi ở", value: "Gò Vấp, TP.HCM" },
+  { label: "Chiều cao", value: "1m58" },
+  { label: "Cân nặng", value: "44kg" },
+  { label: "Ba vòng", value: "82 · 65 · 89" },
 ];
 
 export default function AboutPage() {
   return (
     <div className="flex flex-1 flex-col p-4">
       <section className="grid grid-cols-1 gap-3 lg:grid-cols-2 lg:items-start">
-        <StickyPortrait src="/images/about/portrait.jpg" />
+        <PortraitTilt />
 
         <div className="flex flex-col gap-3">
-          <div className="animate-enter [animation-delay:100ms]">
-            <SectionCard title="Giới thiệu" className="min-h-[360px]">
+          {/* Intro */}
+          <Reveal>
+            <SectionCard title="Xin chào, mình là Gia Như">
               <p>
-                Với trọng tâm là những khoảnh khắc tự nhiên cùng phong cảnh ấn tượng,
-                tôi cố gắng khơi gợi cảm xúc và kể chuyện qua từng tác phẩm. Nhiếp ảnh của tôi
-                hòa quyện sự chân thực của cuộc sống hằng ngày với vẻ đẹp nghệ thuật,
-                giúp người xem kết nối sâu sắc hơn với mỗi bức ảnh.
+                Mình là <span className="text-white">mẫu ảnh</span> &amp; gương
+                mặt thương hiệu tại TP. Hồ Chí Minh. Mình nhận chụp ảnh sản
+                phẩm/lookbook, quay feedback và host livestream — mang đến khung
+                hình tự nhiên, cuốn hút và đúng tinh thần thương hiệu của bạn.
               </p>
               <p>
-                Dù khám phá không gian đô thị hay xuyên mình vào thiên nhiên,
-                mục tiêu của tôi là làm nổi bật điều phi thường trong những điều bình thường.
-                Qua ống kính, tôi mời bạn cùng đồng hành trong hành trình thị giác
-                đầy cảm hứng.
-              </p>
-            </SectionCard>
-          </div>
-
-          <div className="animate-enter [animation-delay:150ms]">
-            <Clients />
-          </div>
-
-          <div className="animate-enter [animation-delay:200ms]">
-            <SectionCard title="Triển lãm" className="min-h-[280px]">
-              <p>
-                Khám phá bộ sưu tập nhiếp ảnh được chọn lọc, ghi lại những khoảnh khắc cảm xúc,
-                thiên nhiên và cuộc sống đô thị với chi tiết ấn tượng.
+                Làm việc đúng giờ, chuyên nghiệp và luôn hết mình trước ống kính.
+                Mình giúp sản phẩm trông đáng tin và chạm cảm xúc khách hàng hơn
+                trong từng khung hình.
               </p>
             </SectionCard>
-          </div>
-          <div className="animate-enter [animation-delay:250ms]">
-            <TimelineList items={EXHIBITIONS} />
-          </div>
+          </Reveal>
 
-          <div className="animate-enter [animation-delay:300ms]">
-            <SectionCard title="Giải thưởng & Vinh danh" className="min-h-[200px]" />
-          </div>
-          <div className="animate-enter [animation-delay:350ms]">
-            <TimelineList items={AWARDS} />
-          </div>
+          {/* Quick facts */}
+          <Reveal delay={0.05}>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {FACTS.map((f) => (
+                <div
+                  key={f.label}
+                  className="rounded-3xl bg-neutral-900 px-5 py-6"
+                >
+                  <p className="text-xl font-semibold text-white">{f.value}</p>
+                  <p className="mt-1 text-xs uppercase tracking-wider text-neutral-500">
+                    {f.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
 
-          <div className="animate-enter [animation-delay:400ms]">
+          {/* Services */}
+          <Reveal>
+            <SectionCard title="Hình thức hợp tác" className="min-h-[180px]">
+              <p>
+                Linh hoạt theo nhu cầu chiến dịch — từ một buổi chụp nhanh đến
+                gói nội dung trọn vẹn cho thương hiệu.
+              </p>
+            </SectionCard>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <TimelineList items={SERVICES} />
+          </Reveal>
+
+          {/* CTA */}
+          <Reveal>
+            <Link
+              href="/contact"
+              className="group flex flex-col gap-6 rounded-3xl bg-white p-8 text-black transition hover:bg-white/90 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <div>
+                <p className="text-2xl font-semibold tracking-tight">
+                  Sẵn sàng cho buổi chụp tiếp theo?
+                </p>
+                <p className="mt-1 text-sm text-neutral-600">
+                  Nhắn mình để trao đổi ý tưởng và đặt lịch — phản hồi nhanh
+                  trong ngày.
+                </p>
+              </div>
+              <span className="inline-flex shrink-0 items-center gap-1.5 rounded-2xl bg-black px-6 py-3.5 text-[15px] font-medium text-white transition group-hover:gap-2.5">
+                Đặt lịch ngay
+                <ArrowUpRight className="h-4 w-4" />
+              </span>
+            </Link>
+          </Reveal>
+
+          <Reveal>
             <SocialLinks />
-          </div>
-          <div className="animate-enter [animation-delay:450ms]">
+          </Reveal>
+          <Reveal>
             <SiteFooter />
-          </div>
+          </Reveal>
         </div>
       </section>
     </div>
